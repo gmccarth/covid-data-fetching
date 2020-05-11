@@ -2,9 +2,7 @@ package com.redhat;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.Date;
+import java.time.LocalDate;
 
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -17,16 +15,19 @@ import org.apache.camel.model.dataformat.JsonLibrary;
 
 public class JhuCsseExtractor extends RouteBuilder {
 	  
-    DateTimeFormatter dtf = DateTimeFormatter.ofPattern("MM-dd-yyyy");  
-    LocalDateTime now = LocalDateTime.now();
+//    DateTimeFormatter dtf = DateTimeFormatter.ofPattern("MM-dd-yyyy");  
+//    LocalDateTime now = LocalDateTime.now();
 //    LocalDateTime previous = LocalDateTime.now().minusDays(1);
     
 //    String yesterday = dtf.format(previous);
 //    String today = dtf.format(now);
-    static String today = "05-06-2020";
-    static String yyymmdd = today.substring(6,10).concat(today.substring(2,3)).concat(today.substring(0,2)).concat(today.substring(2,5));
-    static SimpleDateFormat sdf = new SimpleDateFormat("yyy-MM-dd");
-    
+	
+	
+    static String today = "05-07-2020";
+    static int yyyy = Integer.parseInt(today.substring(6,10));
+    static int mm = Integer.parseInt(today.substring(0,2));
+    static int dd = Integer.parseInt(today.substring(3,5));
+
 	
 	@Override
   public void configure() throws Exception {
@@ -80,7 +81,7 @@ public class JhuCsseExtractor extends RouteBuilder {
 //    @DataField(pos = 5)
 //    private int deaths;
     
-    private Date reportDate;
+    private LocalDate reportDate;
 
     public String getAdmin2() {
       return admin2;
@@ -131,11 +132,17 @@ public class JhuCsseExtractor extends RouteBuilder {
       this.deaths = deaths;
     }
     
-    public Date getReportDate() throws ParseException {
-		return sdf.parse(yyymmdd);
+    public Long getReportDate() {
+        Long epoch = 0L;
+    	try {
+        	 epoch = new SimpleDateFormat("MM-dd-yyyy").parse(today).getTime();
+        } catch (ParseException e) {
+        	e.printStackTrace();
+        }
+		return epoch;
 	}
 
-	public void setReportDate(Date reportDate) {
+	public void setReportDate(LocalDate reportDate) {
 		this.reportDate = reportDate;
 	}
 
