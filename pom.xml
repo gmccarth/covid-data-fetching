@@ -91,6 +91,10 @@
 			<artifactId>camel-quarkus-http</artifactId>
 		</dependency>
 		<dependency>
+			<groupId>org.apache.camel.quarkus</groupId>
+			<artifactId>camel-quarkus-bean</artifactId>
+		</dependency>
+		<dependency>
 			<groupId>org.json</groupId>
 			<artifactId>json</artifactId>
 			<version>20190722</version>
