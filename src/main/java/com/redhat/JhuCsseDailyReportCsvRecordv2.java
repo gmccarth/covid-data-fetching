@@ -75,8 +75,15 @@ public class JhuCsseDailyReportCsvRecordv2 {
 
 	public Long getReportDate() {
 		Long epoch = 0L;
+		SimpleDateFormat sdf1 = new SimpleDateFormat("MM-dd-yyyy");
+		SimpleDateFormat sdf2 = new SimpleDateFormat("M/dd/yy");
+		SimpleDateFormat sdf = getLastUpdate().length()<10 ? sdf2 : sdf1;
+		int length = getLastUpdate().length()<10 ? getLastUpdate().length() : 10;
+	
+
 		try {
-			epoch = new SimpleDateFormat("MM-dd-yyyy").parse(getLastUpdate().substring(0,10)).getTime();
+			
+			epoch = sdf.parse(getLastUpdate().substring(0,length)).getTime();
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
@@ -84,14 +91,15 @@ public class JhuCsseDailyReportCsvRecordv2 {
 	}
 
 	public String getLastUpdate() {
-		return lastUpdate;
+		System.out.println("in getLastUpdate(): " + lastUpdate.split(" ")[0]);
+		return lastUpdate.split(" ")[0];
 	}
 
 	public void setLastUpdate(String lastUpdate) {
 		this.lastUpdate = lastUpdate;
 	}
 
-	public void setReportDate(String lastUpdate) {
-		this.lastUpdate = lastUpdate;
+	public void setReportDate(Long reportDate) {
+		this.reportDate = reportDate;
 	}
 }

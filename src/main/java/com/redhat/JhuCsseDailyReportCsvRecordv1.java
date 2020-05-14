@@ -87,8 +87,7 @@ public class JhuCsseDailyReportCsvRecordv1 {
 	}
 
 	public String getLastUpdate() {
-		System.out.println("lastUpdate=" + lastUpdate);
-		return lastUpdate;
+		return lastUpdate.split(" ")[0];
 	}
 
 	public void setLastUpdate(String lastUpdate) {
