@@ -87,7 +87,20 @@ public class JhuCsseDailyReportCsvRecordv1 {
 	}
 
 	public String getLastUpdate() {
-		return lastUpdate.split(" ")[0];
+		String lastUpdateTrunc = lastUpdate.split(" ")[0].length() > 10 ? lastUpdate.split("T")[0] : lastUpdate.split(" ")[0];
+		
+		SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-MM-dd");
+		SimpleDateFormat sdf2 = new SimpleDateFormat("M/dd/yy");
+		
+		int length = lastUpdateTrunc.length();
+		try {
+			lastUpdate = (length<10) ? sdf1.format(sdf2.parse(lastUpdateTrunc)) : lastUpdateTrunc;
+	
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return lastUpdate;
 	}
 
 	public void setLastUpdate(String lastUpdate) {
