@@ -33,7 +33,7 @@ public class JhuCsseDailyReportCsvRecordv2 {
 	private Long reportDate;
 
 	public String getAdmin2() {
-		return admin2;
+		return admin2.toLowerCase();
 	}
 
 	public void setAdmin2(String admin2) {
@@ -41,7 +41,7 @@ public class JhuCsseDailyReportCsvRecordv2 {
 	}
 
 	public String getProvinceState() {
-		return provinceState;
+		return provinceState.toLowerCase();
 	}
 
 	public void setProvinceState(String provinceState) {
@@ -50,7 +50,7 @@ public class JhuCsseDailyReportCsvRecordv2 {
 
 	@XmlElement(name = "country")
 	public String getCountryRegion() {
-		return countryRegion;
+		return countryRegion.toLowerCase();
 	}
 
 	public void setCountryRegion(String countryRegion) {
