@@ -57,7 +57,7 @@ public class JhuCsseExtractor extends RouteBuilder {
 		if(dateToCheck==null) dateToCheck = "02-02-2020";
 		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("MM-dd-yyyy");
 		LocalDate date = LocalDate.parse(dateToCheck, dtf);
-		LocalDate endDate = LocalDate.parse("05-13-2020", dtf);
+		LocalDate endDate = LocalDate.parse("05-19-2020", dtf);
 		Boolean validDate = date.isBefore(endDate);
 		System.out.println("Date in valid range: " + date.isBefore(endDate) + " > " + dateToCheck);
 		return validDate;
