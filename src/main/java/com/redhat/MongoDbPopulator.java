@@ -14,13 +14,13 @@ public class MongoDbPopulator extends RouteBuilder {
     @Inject MongoClient mongoClient;
 
     @ConfigProperty(name = "camel.component.kafka.brokers")
-    private String brokers;
+    String brokers;
 
     @ConfigProperty(name = "camel.mongodb.database")
-    private String database;
+    String database;
 
     @ConfigProperty(name = "camel.mongodb.collection")
-    private String collection;
+    String collection;
 
     
     public void configure() {
